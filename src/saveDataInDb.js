@@ -5,7 +5,6 @@ export default async function saveDataInDb(data) {
   try {
     const user = new User(data.user);
     await user.save();
-    console.log('Data= ', data);
     const promises = data.pets.map((pet) => {
       const petData = Object.assign({}, pet, {
         owner: user._id,
