@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import canonize from './canonize';
 
 const app = express();
 app.use(cors());
@@ -9,11 +10,10 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/task2A', (req, res) => {
-  const sum = (+req.query.a || 0) + (+req.query.b || 0);
-  res.send(sum.toString());
-})
-
+app.get('/canonize', (req, res) => {
+  const nameParse = canonize(req.query.username);
+ 	res.send(nameParse);
+});
 app.listen(3000, () => {
   console.log('Your app listening on port 3000!');
 });
